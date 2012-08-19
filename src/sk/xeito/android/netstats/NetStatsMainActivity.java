@@ -1,12 +1,15 @@
 package sk.xeito.android.netstats;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.net.TrafficStats;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ public class NetStatsMainActivity extends Activity {
 
 	Handler handler;
 	NetworkStatsTask networkStatsTask;
+	WebView webView;
 	
 	static class NetworkStatsTask implements Runnable {
 		
@@ -71,13 +75,16 @@ public class NetStatsMainActivity extends Activity {
 	}
 
 	
-    @Override
+    @SuppressLint("SetJavaScriptEnabled")
+	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_net_stats_main);
         
-        WebView webView = (WebView) findViewById(R.id.webview);
-        webView.loadUrl("http://www.booking.com/");
+        webView = (WebView) findViewById(R.id.webview);
+        webView.loadUrl("http://www.google.com/");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
 
 		TextView rx = (TextView) findViewById(R.id.rx);
@@ -86,6 +93,15 @@ public class NetStatsMainActivity extends Activity {
 		this.networkStatsTask = NetworkStatsTask.create(this.handler, rx, tx);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    	if (keyCode == KeyEvent.KEYCODE_BACK && webView.canGoBack()) {
+    		webView.goBack();
+    		return true;
+    	}
+    	return super.onKeyDown(keyCode, event);
+    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_net_stats_main, menu);
