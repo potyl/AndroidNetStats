@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.os.Process;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -99,12 +98,6 @@ public class NetStatsMainActivity extends Activity {
     		return true;
     	}
     	return super.onKeyDown(keyCode, event);
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.activity_net_stats_main, menu);
-        return true;
     }
 
     static void printf(String format, Object...args) {
