@@ -64,7 +64,6 @@ public class NetStatsMainActivity extends Activity {
 			String units = null;
 			double d = bytes;
 			for (int i = 0; i < UNITS.length; ++i) {
-				printf("%s) Bytes = %s units: %s", i, bytes, units);
 				if (d < 1024) break;
 				d /= 1024;
 				units = UNITS[i];
