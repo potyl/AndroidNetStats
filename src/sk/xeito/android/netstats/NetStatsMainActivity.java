@@ -45,7 +45,6 @@ public class NetStatsMainActivity extends Activity {
 		
 		private static void setLabel (TextView view, long bytes) {
 			String text = bytes == TrafficStats.UNSUPPORTED ? "N/A" : formatBytes(bytes);
-			printf("Bytes: %s = %s", bytes, text);
 			view.setText(text);
 		}
 
@@ -59,15 +58,15 @@ public class NetStatsMainActivity extends Activity {
 		
 		private static String formatBytes(long bytes) {
 			String units = null;
+			double d = bytes;
 			for (int i = 0; i < UNITS.length; ++i) {
 				printf("%s) Bytes = %s units: %s", i, bytes, units);
-				if (bytes < 1024) break;
-				bytes /= 1024;
+				if (d < 1024) break;
+				d /= 1024;
 				units = UNITS[i];
 			}
-			printf("X) Bytes = %s units: %s", bytes, units);
 
-			return units == null ? Long.toString(bytes) : String.format("%s%s", bytes, units);
+			return units == null ? String.format("%.2f", d) : String.format("%.2f%s", d, units);
 		}
 	}
 
