@@ -5,32 +5,48 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/topbar"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/rx_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_down" />
 
         <TextView
+            android:id="@+id/rx_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Rx: " />
 
         <TextView
             android:id="@+id/rx"
-            android:width="75sp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:width="75sp"
+             />
+
+        <ImageView
+            android:id="@+id/tx_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/arrow_up" />
 
         <TextView
+            android:id="@+id/tx_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tx: " />
 
         <TextView
             android:id="@+id/tx"
-            android:width="75sp"
+
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:width="75sp"
+             />
     </LinearLayout>
 
     <WebView
